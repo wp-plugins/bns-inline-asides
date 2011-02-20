@@ -38,17 +38,13 @@ Please read this article for further assistance: http://wpfirstaid.com/2009/12/p
 ----
 
 = Usage =
-This plugin makes use of WordPress Shortcode API (additional information can be
-found in the codex here: http://codex.wordpress.org/Shortcode_API)
+This plugin makes use of WordPress Shortcode API (additional information can be found in the codex here: http://codex.wordpress.org/Shortcode_API)
 
-The basic shortcode usage is [aside]CONTENT[/aside]. The default values of the
-shortcode are type: aside; and, status: open.
+The basic shortcode usage is [aside]CONTENT[/aside]. The default values of the shortcode are type: aside; and, status: open.
 
 * [aside]CONTENT[/aside] = [aside type="aside" status="open"]CONTENT[/aside]
 
-To use the [aside] shortcode and have it initially "closed" any status other
-than "open" will work as the plugin will change the status to "closed" if it is
-not equal to "open".
+To use the [aside] shortcode and have it initially "closed" any status other than "open" will work as the plugin will change the status to "closed" if it is not equal to "open".
 
 Some pre-defined aside types are currently available:
 
@@ -60,28 +56,20 @@ See the frequently asked questions section for how to add your own custom type.
 == Frequently Asked Questions ==
 
 = How can I style the plugin output? =
-To add your own custom aside type styles you might consider creating a new
-stylesheet in this plugin's folder using the name: bnsia-custom-types.css
+To add your own custom aside type styles you might consider creating a new stylesheet in this plugin's folder using the name: bnsia-custom-types.css
 
-The plugin will create a class name from the custom aside type you use in your
-shortcode. For example, [aside type="bacon"] will generate these classes you can
-style:
+The plugin will create a class name from the custom aside type you use in your shortcode. For example, [aside type="bacon"] will generate these classes you can style:
 
 * .open-aside.bacon
 * .close-aside.bacon
 * p.aside.bacon
 * blockquote.aside.bacon
 
-This method can also be used to over-write the Pre-Defined Aside Types styles as
-the bnsia-custom-types.css file loads after the main stylesheet.
+This method can also be used to over-write the Pre-Defined Aside Types styles as the bnsia-custom-types.css file loads after the main stylesheet.
 
 The bnsia-custom-types.css stylesheet should not be over-written by updates.
 
 == Screenshots ==
-Sample content taken from the "Readability" post of the Theme Unit Test data
-found here: http://codex.wordpress.org/Theme_Unit_Test used with the default
-Twenty Ten Theme.
-
 1. Sample using pre-defined aside Note (open).
 2. Sample using pre-defined aside Note (closed).
 3. Sample using pre-defined aside Rant (closed).
@@ -112,6 +100,10 @@ Twenty Ten Theme.
 = Acknowledgements =
 
   Credits for jQuery assistance: Trevor Mills www.topquarkproductions.ca
+
+= Screenshots Source Content =
+Sample content taken from the "Readability" post of the Theme Unit Test data found here: http://codex.wordpress.org/Theme_Unit_Test used with the default Twenty Ten Theme.
+
 
 == Upgrade Notice ==
 Please stay current with your WordPress installation, your active theme, and your plugins.
