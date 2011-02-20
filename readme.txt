@@ -119,4 +119,4 @@ Please stay current with your WordPress installation, your active theme, and you
 == Changelog ==
 = 0.1 =
 * Initial Release.
-* Released: ...
+* Released: February 20, 2011
