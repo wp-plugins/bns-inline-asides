@@ -25,8 +25,9 @@ span.close-aside, span.open-aside {
 
 .aside-toggler.closed .close-aside,
 .aside-toggler.open .open-aside,
+blockquote.aside.closed,
 p.aside.closed,
-blockquote.aside.closed {
+span.aside.closed {
   display:none;
 }
 
@@ -35,13 +36,15 @@ blockquote.aside { background-image: none; }
 /* Pre-Defined Aside Types */
 /* Type: Note */
 .open-aside.note { background-color: #c0c0c0;}
+blockquote.aside.note,
 p.aside.note,
-blockquote.aside.note { background-color: #c0c0c0; /* Default text color on Light Grey background - Sample Only */ }
+span.aside.note { background-color: #c0c0c0; /* Default text color on Light Grey background - Sample Only */ }
 
 /* Type: Rant */
 .open-aside.rant { background-color: #ff0000; color: #000; }
+blockquote.aside.rant,
 p.aside.rant,
-blockquote.aside.rant { /* Black text on a red background with a non-repeating flame graphic for added emphasis - Sample Only */
+span.aside.rant { /* Black text on a red background with a non-repeating flame graphic for added emphasis - Sample Only */
 	background: #ff0000 url('flame.png') no-repeat left;
 	color: #000;
 }
@@ -57,8 +60,9 @@ blockquote.aside.rant { /* Black text on a red background with a non-repeating f
   * classes can style:
   *   .open-aside.bacon
   *   .close-aside.bacon
-  *   p.aside.bacon
   *   blockquote.aside.bacon
+  *   p.aside.bacon       
+  *   span.aside.bacon
   *
   * This method can also be used to over-write the Pre-Defined Aside Types 
   * styles as the bnsia-custom-types.css file loads after the main stylesheet.

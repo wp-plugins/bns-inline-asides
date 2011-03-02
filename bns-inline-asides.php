@@ -3,14 +3,14 @@
 Plugin Name: BNS Inline Asides
 Plugin URI: http://buynowshop.com/plugins/bns-inline-asides/
 Description: This plugin will allow you to style sections of post content with added emphasis by leveraging a style element from the active theme.
-Version: 0.1
+Version: 0.2
 Author: Edward Caissie
 Author URI: http://edwardcaissie.com/
 License: GNU General Public License v2
 License URI: http://www.gnu.org/licenses/old-licenses/gpl-2.0.html
 */
 
-/* Last revision: February 13, 2011 v0.1 */
+/* Last revision: March 1, 2011 v0.2 */
 
 /*  Copyright 2011  Edward Caissie  (email : edward.caissie@gmail.com)
 
@@ -85,9 +85,11 @@ function bns_inline_asides_shortcode( $atts, $content = null ) {
 		$type_class = ' ' . $type_class;
 	}
 
-  // TO-DO: Option which style element to leverage, currently manual edits are required to change. Plugin currently only supports <blockquote> and <p>.	
+  // TO-DO: Option which style element to leverage, currently manual edits are required to change. Plugin currently only supports <blockquote>, <p> and <span>.
+  // TO-DO: The <span> element requires additional review, use at your own risk.	
 	$bnsia_theme_element = 'blockquote';
 	// $bnsia_theme_element = 'p';
+	// $bnsia_theme_element = 'span';
 
 	// The secret sauce ...
 	$toggle_markup = '<div class="aside-toggler ' . $status . '">'
