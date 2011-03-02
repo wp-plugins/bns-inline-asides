@@ -42,7 +42,7 @@ This plugin makes use of WordPress Shortcode API (additional information can be 
 
 The basic shortcode usage is `[aside]CONTENT[/aside]`. The default values of the shortcode are type: aside; and, status: open.
 
-* `[aside]CONTENT[/aside]` = `[aside type="aside" status="open"]CONTENT[/aside]`
+* `[aside]CONTENT[/aside] = [aside type="aside" status="open"]CONTENT[/aside]`
 
 To use the `[aside]` shortcode and have it initially "closed" any status other than "open" will work as the plugin will change the status to "closed" if it is not equal to "open".
 
@@ -62,8 +62,9 @@ The plugin will create a class name from the custom aside type you use in your s
 
 * .open-aside.bacon
 * .close-aside.bacon
-* p.aside.bacon
 * blockquote.aside.bacon
+* p.aside.bacon
+* span.aside.bacon
 
 This method can also be used to over-write the Pre-Defined Aside Types styles as the bnsia-custom-types.css file loads after the main stylesheet.
 
