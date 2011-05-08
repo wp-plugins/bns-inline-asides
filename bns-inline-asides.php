@@ -3,7 +3,7 @@
 Plugin Name: BNS Inline Asides
 Plugin URI: http://buynowshop.com/plugins/bns-inline-asides/
 Description: This plugin will allow you to style sections of post content with added emphasis by leveraging a style element from the active theme.
-Version: 0.2
+Version: 0.3
 Author: Edward Caissie
 Author URI: http://edwardcaissie.com/
 License: GNU General Public License v2
@@ -65,8 +65,10 @@ add_action( 'wp_head', 'add_BNS_Inline_Asides_Header_Code' );
 // Let's begin ...
 function bns_inline_asides_shortcode( $atts, $content = null ) {
 	extract( shortcode_atts( array(
-				       'type'  => 'Aside',
-				       'status' => 'open',
+				       'type'   => 'Aside',
+				       'show'   => 'To see the <em>%s</em> click here.',
+               'hide'   => 'To hide the <em>%s</em> click here.',
+               'status' => 'open',
 				       ), $atts ) );
 
 	// clean up shortcode properties
@@ -93,8 +95,8 @@ function bns_inline_asides_shortcode( $atts, $content = null ) {
 
 	// The secret sauce ...
 	$toggle_markup = '<div class="aside-toggler ' . $status . '">'
-      . '<span class="open-aside' . $type_class . '">' . sprintf( __( 'To see the <em>%s</em> click here.' ), esc_attr( $type ) ) . '</span>'
-      . '<span class="close-aside' . $type_class . '">' . sprintf( __( 'To hide the <em>%s</em> click here.' ), esc_attr( $type ) ) . '</span>
+      . '<span class="open-aside' . $type_class . '">' . sprintf( __( $show ), esc_attr( $type ) ) . '</span>'
+      . '<span class="close-aside' . $type_class . '">' . sprintf( __( $hide ), esc_attr( $type ) ) . '</span>
     </div>';
   $return = $toggle_markup . '<' . $bnsia_theme_element . ' class="aside' . $type_class . ' ' . $status . '">' . do_shortcode( $content ) . '</' . $bnsia_theme_element . '>';
   

@@ -3,8 +3,8 @@ Contributors: cais
 Donate link: http://buynowshop.com
 Tags: posts, pages, content, shortcode
 Requires at least: 3.0
-Tested up to: 3.1
-Stable tag: 0.2
+Tested up to: 3.1.2
+Stable tag: 0.3
 
 This plugin will allow you to style sections of the post, or page, content with added emphasis by leveraging a style element from the active theme.
 
@@ -70,6 +70,15 @@ This method can also be used to over-write the Pre-Defined Aside Types styles as
 
 The bnsia-custom-types.css stylesheet should not be over-written by updates.
 
+= How do I use the 'show' and 'hide' parameters? =
+If you do not want to use the default 'show' and 'hide' parameters, you can change them to your own preference in each instance of the shortcode. If you want your aside type to be dynamically inserted into the message simply use the `%s` placeholder in your custom message.
+
+Here are some examples:
+
+* `[aside type="bacon" show="Want to see my <em>%s</em>?" status="closed"]`
+* `[aside type="soup" hide="No %s for you!"]`
+
+
 == Screenshots ==
 1. Sample using pre-defined aside Note (open).
 2. Sample using pre-defined aside Note (closed).
@@ -105,11 +114,15 @@ The bnsia-custom-types.css stylesheet should not be over-written by updates.
 = Screenshots Source Content =
 Sample content taken from the "Readability" post of the Theme Unit Test data found here: http://codex.wordpress.org/Theme_Unit_Test used with the default Twenty Ten Theme.
 
-
 == Upgrade Notice ==
 Please stay current with your WordPress installation, your active theme, and your plugins.
 
 == Changelog ==
+= 0.3 =
+* verified to work with WordPress vesion 3.1.2
+* added new parameters to allow end-user to define 'show' and 'hide' messages
+* released: May 7, 2011
+
 = 0.2 =
 * add the 'span' element
 * fix readme markup issues
