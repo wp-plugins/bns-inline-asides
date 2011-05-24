@@ -3,14 +3,14 @@
 Plugin Name: BNS Inline Asides
 Plugin URI: http://buynowshop.com/plugins/bns-inline-asides/
 Description: This plugin will allow you to style sections of post content with added emphasis by leveraging a style element from the active theme.
-Version: 0.3
+Version: 0.4
 Author: Edward Caissie
 Author URI: http://edwardcaissie.com/
 License: GNU General Public License v2
 License URI: http://www.gnu.org/licenses/old-licenses/gpl-2.0.html
 */
 
-/* Last revision: March 1, 2011 v0.2 */
+/* Last revision: May 23, 2011 v0.4 */
 
 /*  Copyright 2011  Edward Caissie  (email : edward.caissie@gmail.com)
 
@@ -43,7 +43,7 @@ if ( version_compare( $wp_version, "3.0", "<" ) ) { // per home_url() function
 }
 
 // Define some constants to save some keying
-define( 'BNSIA_PATH', home_url( '/wp-content/plugins/bns-inside-asides/' ) );
+define( 'BNSIA_PATH', plugin_dir_url( __FILE__ ) );
 
 // Add BNS Inline Asides scripts
 function BNSIA_Scripts_Action() {
@@ -55,10 +55,18 @@ function BNSIA_Scripts_Action() {
 }
 add_action('wp_print_scripts', 'BNSIA_Scripts_Action');
 
+/* TO-DO: enqueue style sheets?
+// Add BNS Inline Aside Style Sheets 
+function BNSIA_Styles() {
+	wp_enqueue_style( 'taxonomy-list-shortcode', plugin_dir_url( __FILE__ ) . '/bnsia-style.css', array(), '', 'screen' ); // _mfields suggestion
+}
+add_action('wp_print_scripts', 'BNSIA_Styles');
+*/
+
 // Add BNS Inline Asides style sheet
 function add_BNS_Inline_Asides_Header_Code() {
-	echo '<link type="text/css" rel="stylesheet" href="' . home_url( '/' ) . 'wp-content/plugins/bns-inline-asides/bnsia-style.css" />' . "\n";
-	echo '<link type="text/css" rel="stylesheet" href="' . home_url( '/' ) . 'wp-content/plugins/bns-inline-asides/bnsia-custom-types.css" />' . "\n";  	
+	echo '<link type="text/css" rel="stylesheet" href="' . BNSIA_PATH . 'bnsia-style.css" />' . "\n";
+	echo '<link type="text/css" rel="stylesheet" href="' . BNSIA_PATH . 'bnsia-custom-types.css" />' . "\n";  	
 }
 add_action( 'wp_head', 'add_BNS_Inline_Asides_Header_Code' );
 

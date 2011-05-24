@@ -3,8 +3,8 @@ Contributors: cais
 Donate link: http://buynowshop.com
 Tags: posts, pages, content, shortcode
 Requires at least: 3.0
-Tested up to: 3.1.2
-Stable tag: 0.3
+Tested up to: 3.2
+Stable tag: 0.4
 
 This plugin will allow you to style sections of the post, or page, content with added emphasis by leveraging a style element from the active theme.
 
@@ -118,8 +118,13 @@ Sample content taken from the "Readability" post of the Theme Unit Test data fou
 Please stay current with your WordPress installation, your active theme, and your plugins.
 
 == Changelog ==
+= 0.4 =
+* verified to work with WordPress version 3.2-beta1 
+* re-wrote the BNSIA_PATH define statement
+* re-wrote the stylesheet paths to use BNSIA_PATH 
+
 = 0.3 =
-* verified to work with WordPress vesion 3.1.2
+* verified to work with WordPress version 3.1.2
 * added new parameters to allow end-user to define 'show' and 'hide' messages
 * released: May 7, 2011
 
