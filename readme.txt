@@ -4,7 +4,7 @@ Donate link: http://buynowshop.com
 Tags: posts, pages, content, shortcode
 Requires at least: 3.0
 Tested up to: 3.2
-Stable tag: 0.4.1
+Stable tag: 0.5
 
 This plugin will allow you to style sections of the post, or page, content with added emphasis by leveraging a style element from the active theme.
 
@@ -118,6 +118,10 @@ Sample content taken from the "Readability" post of the Theme Unit Test data fou
 Please stay current with your WordPress installation, your active theme, and your plugins.
 
 == Changelog ==
+= 0.5 =
+* released June 2011
+* re-wrote the enqueue stylesheets code to be more correct
+
 = 0.4.1 =
 * enqueued stylesheets
 * released May 23, 2011
