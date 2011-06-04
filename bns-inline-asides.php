@@ -3,14 +3,14 @@
 Plugin Name: BNS Inline Asides
 Plugin URI: http://buynowshop.com/plugins/bns-inline-asides/
 Description: This plugin will allow you to style sections of post content with added emphasis by leveraging a style element from the active theme.
-Version: 0.5
+Version: 0.5.1
 Author: Edward Caissie
 Author URI: http://edwardcaissie.com/
 License: GNU General Public License v2
 License URI: http://www.gnu.org/licenses/old-licenses/gpl-2.0.html
 */
 
-/* Last revision: June 3, 2011 v0.5 */
+/* Last revision: June 4, 2011 v0.5.1 */
 
 /*  Copyright 2011  Edward Caissie  (email : edward.caissie@gmail.com)
 
@@ -47,7 +47,6 @@ define( 'BNSIA_PATH', plugin_dir_url( __FILE__ ) );
 
 // Add BNS Inline Asides scripts
 function BNSIA_Scripts_and_Styles_Action() {
-	if ( ! is_admin() ) {
     /* Enqueue Scripts */
 		wp_enqueue_script( 'jquery' );
 		// TO-DO: Move scripts into their own folder? ... and localize?
@@ -57,7 +56,6 @@ function BNSIA_Scripts_and_Styles_Action() {
     /* Enqueue Style Sheets */
   	wp_enqueue_style( 'BNSIA-Style', plugin_dir_url( __FILE__ ) . '/bnsia-style.css', array(), '0.5', 'screen' );
   	wp_enqueue_style( 'BNSIA-Custom-Types', plugin_dir_url( __FILE__ ) . '/bnsia-custom-types.css', array(), '0.5', 'screen' );
-	}
 }
 add_action('wp_enqueue_scripts', 'BNSIA_Scripts_and_Styles_Action');
 

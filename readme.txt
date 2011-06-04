@@ -118,6 +118,10 @@ Sample content taken from the "Readability" post of the Theme Unit Test data fou
 Please stay current with your WordPress installation, your active theme, and your plugins.
 
 == Changelog ==
+= 0.5.1 =
+* not-released (working version)
+* removed `is_admin` check from enqueue action function (not needed)
+
 = 0.5 =
 * released June 2011
 * re-wrote the enqueue stylesheets code to be more correct
