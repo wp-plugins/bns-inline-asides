@@ -6,14 +6,20 @@
     it under the terms of the GNU General Public License, version 2, as
     published by the Free Software Foundation.
 
-    BNS Inline Asides is distributed in the hope that it will be useful,
-    but WITHOUT ANY WARRANTY; without even the implied warranty of
-    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-    GNU General Public License for more details.
+    You may NOT assume that you can use any other version of the GPL.
 
-    You should have received a copy of the GNU General Public License
-    along with this program; if not, write to the Free Software
-    Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
+    BNS Inline Asides is distributed in the hope that it will be useful, but
+    WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY
+    or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for
+    more details.
+
+    You should have received a copy of the GNU General Public License along with
+    this program; if not, write to:
+        Free Software Foundation, Inc.
+        51 Franklin St, Fifth Floor
+        Boston, MA  02110-1301  USA
+
+    Last revised at version 0.6
 */
 
 span.close-aside, span.open-aside {
@@ -25,53 +31,61 @@ span.close-aside, span.open-aside {
 
 .aside-toggler.closed .close-aside,
 .aside-toggler.open .open-aside,
+.bnsia.aside.closed,
 blockquote.aside.closed,
-p.aside.closed,
-span.aside.closed {
+p.aside.closed {
   display:none;
 }
 
+/** Default - no CSS element chosen */
+.bnsia.aside { padding: 10px; }
+
+/** Remove any background image from blockquote if it exists */
 blockquote.aside { background-image: none; }
 
-/* Pre-Defined Aside Types */
-/* Type: Note */
+/** Pre-Defined BNS Inline Aside Types */
+/** Type: Note */
 .open-aside.note { background-color: #c0c0c0;}
+.bnsia.aside.note,
 blockquote.aside.note,
-p.aside.note,
-span.aside.note { background-color: #c0c0c0; /* Default text color on Light Grey background - Sample Only */ }
+p.aside.note { /* Default text color on Light Grey background - Sample Only */
+    background-color: #c0c0c0; }
 
-/* Type: Rant */
+/** Type: Rant */
 .open-aside.rant { background-color: #ff0000; color: #000; }
+.bnsia.aside.rant,
 blockquote.aside.rant,
-p.aside.rant,
-span.aside.rant { /* Black text on a red background with a non-repeating flame graphic for added emphasis - Sample Only */
+p.aside.rant { /* Black text on a red background with a non-repeating flame graphic for added emphasis - Sample Only */
 	background: #ff0000 url('flame.png') no-repeat left;
 	color: #000;
 }
 
-/* Custom Aside Types */
+/** BNS Inline Asides Custom Types */
 /**
-  * To add your own custom aside type styles you might consider creating a new
-  * stylesheet in this plugin's folder using the name: bnsia-custom-types.css
-  *   
-  * Simply follow the "Sample" element formats above for simple styles.
-  * The plugin will create a class name from the custom aside type you use in 
-  * your shortcode. For example, [aside type="bacon"] will generate these
-  * classes can style:
-  *   .open-aside.bacon
-  *   .close-aside.bacon
-  *   blockquote.aside.bacon
-  *   p.aside.bacon       
-  *   span.aside.bacon
-  *
-  * This method can also be used to over-write the Pre-Defined Aside Types 
-  * styles as the bnsia-custom-types.css file loads after the main stylesheet.
-  *                     
-  * The bnsia-custom-types.css stylesheet should not be over-written by updates.        
-  * 
-  * Enjoy!
-  *   
-  * 
-  * Edward Caissie 
-  * Cais | edward.caissie@gmail.com  
-  */            
+ * To add your own custom aside type styles you might consider creating a new
+ * stylesheet in this plugin folder using the name: bnsia-custom-types.css
+ *
+ * Simply follow the "Sample" element formats above for simple styles. The
+ * plugin will create a class name from the custom aside type you use in your
+ * shortcode.
+ * For example: [aside type="bacon"] will generate CSS classes similar to these:
+ *
+ *  .open-aside.bacon
+ *  .close-aside.bacon
+ *  .bnsia.aside.bacon
+ *  blockquote.aside.bacon
+ *  p.aside.bacon
+ *
+ * NB: Make sure to use the correct prefix, the default is: blockquote.
+ *
+ * This method can also be used to over-write the Pre-Defined Aside Types styles
+ * as the bnsia-custom-types.css file loads after the main stylesheet.
+ *
+ * The bnsia-custom-types.css stylesheet should not be over-written by updates.
+ *
+ * Enjoy!
+ *
+ *
+ * Edward Caissie
+ * Cais | edward.caissie@gmail.com
+ */

@@ -3,8 +3,8 @@ Contributors: cais
 Donate link: http://buynowshop.com
 Tags: posts, pages, content, shortcode
 Requires at least: 3.0
-Tested up to: 3.2
-Stable tag: 0.5
+Tested up to: 3.3
+Stable tag: 0.6
 
 This plugin will allow you to style sections of the post, or page, content with added emphasis by leveraging a style element from the active theme.
 
@@ -62,9 +62,9 @@ The plugin will create a class name from the custom aside type you use in your s
 
 * .open-aside.bacon
 * .close-aside.bacon
+* .bnsia.aside.bacon
 * blockquote.aside.bacon
 * p.aside.bacon
-* span.aside.bacon
 
 This method can also be used to over-write the Pre-Defined Aside Types styles as the bnsia-custom-types.css file loads after the main stylesheet.
 
@@ -118,9 +118,15 @@ Sample content taken from the "Readability" post of the Theme Unit Test data fou
 Please stay current with your WordPress installation, your active theme, and your plugins.
 
 == Changelog ==
-= 0.5.1 =
-* not-released (working version)
+= 0.6 =
+* released ...
+* confirmed compatible with WordPress version 3.3
+* added PHPDoc style documentation
+* added `BNS Inline Asides TextDomain` i18n support
+* added `BNS Theme Element` to set CSS element to be used
+* added `bnsia` class (to be used as default)
 * removed `is_admin` check from enqueue action function (not needed)
+* removed 'span' support; going forward with block display elements only
 
 = 0.5 =
 * released June 2011
