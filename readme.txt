@@ -1,10 +1,12 @@
 === BNS Inline Asides ===
 Contributors: cais
 Donate link: http://buynowshop.com
-Tags: posts, pages, content, shortcode
+Tags: posts, pages, content, shortcode, plugin-only
 Requires at least: 3.0
-Tested up to: 3.4
-Stable tag: 0.6.2
+Tested up to: 3.5-alpha
+Stable tag: 0.7
+License: GNU General Public License v2
+License URI: http://www.gnu.org/licenses/old-licenses/gpl-2.0.html
 
 This plugin will allow you to style sections of the post, or page, content with added emphasis by leveraging a style element from the active theme.
 
@@ -46,10 +48,13 @@ The basic shortcode usage is `[aside]CONTENT[/aside]`. The default values of the
 
 To use the `[aside]` shortcode and have it initially "closed" any status other than "open" will work as the plugin will change the status to "closed" if it is not equal to "open".
 
-Some pre-defined aside types are currently available:
+The pre-defined aside types currently included:
 
 * Note - uses the theme element's default text color on a Light Grey background
 * Rant - uses black text on a red background with a non-repeating flame graphic
+* Changelog - sets the font to monospace, reminiscent of type written notes
+* Footnote - uses lower-case roman numerals when the items are written using an (HTML) ordered list
+* Nota Bene (NB) - italicizes the text within the aside
 
 See the frequently asked questions section for how to add your own custom type.
 
@@ -118,6 +123,12 @@ Sample content taken from the "Readability" post of the Theme Unit Test data fou
 Please stay current with your WordPress installation, your active theme, and your plugins.
 
 == Changelog ==
+= 0.7 =
+* Implement OOP style class coding
+* Internal documentation updates and improve code formating
+* Add Type: Footnote
+* Add Type: Nota Bene (can also use the more common shortform NB)
+
 = 0.6.2 =
 * confirmed compatible with WordPress 3.4
 * inline documentation updates
