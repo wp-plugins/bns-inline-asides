@@ -4,7 +4,7 @@ Donate link: http://buynowshop.com
 Tags: posts, pages, content, shortcode, plugin-only
 Requires at least: 3.0
 Tested up to: 3.5
-Stable tag: 0.8
+Stable tag: 0.8.1
 License: GNU General Public License v2
 License URI: http://www.gnu.org/licenses/old-licenses/gpl-2.0.html
 
@@ -48,10 +48,13 @@ The basic shortcode usage is `[aside]CONTENT[/aside]`. The default values of the
 
 To use the `[aside]` shortcode and have it initially "closed" any status other than "open" will work as the plugin will change the status to "closed" if it is not equal to "open".
 
-Some pre-defined aside types are currently available:
+The pre-defined aside types currently included:
 
 * Note - uses the theme element's default text color on a Light Grey background
 * Rant - uses black text on a red background with a non-repeating flame graphic
+* Changelog - sets the font to monospace, reminiscent of type written notes
+* Footnote - uses lower-case roman numerals when the items are written using an (HTML) ordered list
+* Nota Bene (NB) - italicizes the text within the aside
 
 See the frequently asked questions section for how to add your own custom type.
 
@@ -124,6 +127,10 @@ Sample content taken from the "Readability" post of the Theme Unit Test data fou
 Please stay current with your WordPress installation, your active theme, and your plugins.
 
 == Changelog ==
+= 0.8.1 =
+* Released December 2012
+* Added Jetpack hack for single view conflict
+
 = 0.8 =
 * Released November 2012
 * Add `element` shortcode attribute to allow the use of specific HTML tags
