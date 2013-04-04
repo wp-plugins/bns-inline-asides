@@ -3,8 +3,8 @@ Contributors: cais
 Donate link: http://buynowshop.com
 Tags: posts, pages, content, shortcode, plugin-only
 Requires at least: 3.0
-Tested up to: 3.5
-Stable tag: 0.9
+Tested up to: 3.6
+Stable tag: 1.0
 License: GNU General Public License v2
 License URI: http://www.gnu.org/licenses/old-licenses/gpl-2.0.html
 
@@ -96,7 +96,7 @@ Here are some examples:
 
 == Other Notes ==
 
-= Copyright 2011-2012  Edward Caissie  (email : edward.caissie@gmail.com) =
+= Copyright 2011-2013  Edward Caissie  (email : edward.caissie@gmail.com) =
 
   This program is free software; you can redistribute it and/or modify
   it under the terms of the GNU General Public License version 2,
@@ -127,6 +127,21 @@ Sample content taken from the "Readability" post of the Theme Unit Test data fou
 Please stay current with your WordPress installation, your active theme, and your plugins.
 
 == Changelog ==
+= 1.0 =
+* Released <:3()~~~ 2013
+* Added code block termination comments
+* Added 'hat.png' image for "Hat Tip" type
+* Added missing `bnsia` class to theme elements other than default
+* Added style definitions for "Hat Tip" type
+* Minor documentation improvements
+* Moved stylesheet into its own directory
+* Moved images into their own directory
+* Moved JavaScripts into its own directory
+* Refactored $bnsia_element to simply $element
+* Removed direct jQuery enqueue (called as a dependency of 'bnsia-script.js')
+* Removed unused style definitions
+* Use an array of elements rather than a convoluted if statement to sort out if an accepted container is being used
+
 = 0.9 =
 * Released January 2013
 * Removed Jetpack counter-measures hack
