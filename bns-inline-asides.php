@@ -3,8 +3,8 @@
 Plugin Name: BNS Inline Asides
 Plugin URI: http://buynowshop.com/plugins/bns-inline-asides/
 Description: This plugin will allow you to style sections of post content with added emphasis by leveraging a style element from the active theme.
-Version: 1.1
-Text Domain: bns-ia
+Version: 1.2
+Text Domain: bns-inline-asides
 Author: Edward Caissie
 Author URI: http://edwardcaissie.com/
 License: GNU General Public License v2
@@ -18,7 +18,7 @@ License URI: http://www.gnu.org/licenses/old-licenses/gpl-2.0.html
  * emphasis by leveraging a style element from the active theme.
  *
  * @package        BNS_Inline_Asides
- * @version        1.1
+ * @version        1.2
  *
  * @link           http://buynowshop.com/plugins/bns-inline-asides/
  * @link           https://github.com/Cais/bns-inline-asides/
@@ -47,26 +47,11 @@ License URI: http://www.gnu.org/licenses/old-licenses/gpl-2.0.html
  * The license for this software can also likely be found here:
  * http://www.gnu.org/licenses/gpl-2.0.html
  *
- * @version        1.0
- * @date           April 3, 2013
- * Added code block termination comments
- * Added hat graphic for "Hat Tip" type
- *
- * @version        1.0.1
- * @date           July 14, 2013
- * Added check mark graphic and new aside type
- *
- * @version        1.0.2
- * @date           August 2013
- * Added update graphic for new update type
- * Added dynamic filter parameter to shortcode attributes
- *
- * @version        1.0.3
- * @date           December 2013
- * Code reformatting to better reflect WordPress Coding Standards (see https://gist.github.com/Cais/8023722)
- *
  * @version        1.1
  * @date           May 2014
+ *
+ * @version        1.2
+ * @date           November 2014
  */
 
 /** Credits for jQuery assistance: Trevor Mills www.topquarkproductions.ca */
@@ -76,25 +61,30 @@ class BNS_Inline_Asides {
 	/**
 	 * Constructor
 	 *
-	 * @package            BNS_Inline_Asides
-	 * @since              0.1
+	 * @package     BNS_Inline_Asides
+	 * @since       0.1
 	 *
-	 * @internal           Requires WordPress version 3.6
-	 * @internal           @uses shortcode_atts - uses optional filter variable
+	 * @internal    Requires WordPress version 3.6
+	 * @internal    @uses shortcode_atts - uses optional filter variable
 	 *
-	 * @uses    (constant) WP_CONTENT_DIR
-	 * @uses    (global)   $wp_version
-	 * @uses               add_action
-	 * @uses               add_shortcode
-	 * @uses               content_url
-	 * @uses               plugin_dir_url
-	 * @uses               plugin_dir_path
+	 * @uses        (CONSTANT)  WP_CONTENT_DIR
+	 * @uses        (GLOBAL)    $wp_version
+	 * @uses        add_action
+	 * @uses        add_shortcode
+	 * @uses        content_url
+	 * @uses        plugin_dir_url
+	 * @uses        plugin_dir_path
 	 *
-	 * @version            1.1
-	 * @date               May 3, 2014
+	 * @version     1.1
+	 * @date        May 3, 2014
 	 * Corrected textdomain typo
 	 * Updated required version to 3.6 due to use of optional filter variable in `shortcode_atts`
 	 * Define location for BNS plugin customizations
+	 *
+	 * @version     1.2
+	 * @date        November 3, 2014
+	 * Added sanity checks for `BNS_CUSTOM_*` define statements
+	 * Corrections for textdomain to use plugin slug
 	 */
 	function __construct() {
 		/**
@@ -102,7 +92,7 @@ class BNS_Inline_Asides {
 		 * Check installed WordPress version for compatibility
 		 */
 		global $wp_version;
-		$exit_message = __( 'BNS Early Adopter requires WordPress version 3.6 or newer. <a href="http://codex.wordpress.org/Upgrading_WordPress">Please Update!</a>', 'bns-ia' );
+		$exit_message = __( 'BNS Early Adopter requires WordPress version 3.6 or newer. <a href="http://codex.wordpress.org/Upgrading_WordPress">Please Update!</a>', 'bns-inline-asides' );
 		if ( version_compare( $wp_version, "3.6", "<" ) ) {
 			exit ( $exit_message );
 		}
@@ -113,14 +103,20 @@ class BNS_Inline_Asides {
 		define( 'BNSIA_PATH', plugin_dir_path( __FILE__ ) );
 
 		/** Define location for BNS plugin customizations */
-		define( 'BNS_CUSTOM_PATH', WP_CONTENT_DIR . '/bns-customs/' );
-		define( 'BNS_CUSTOM_URL', content_url( '/bns-customs/' ) );
+		if ( ! defined( 'BNS_CUSTOM_PATH' ) ) {
+			define( 'BNS_CUSTOM_PATH', WP_CONTENT_DIR . '/bns-customs/' );
+		}
+		/** End if - not defined */
+		if ( ! defined( 'BNS_CUSTOM_URL' ) ) {
+			define( 'BNS_CUSTOM_URL', content_url( '/bns-customs/' ) );
+		}
+		/** End if - not defined */
 
 		/** Enqueue Scripts and Styles */
 		add_action(
 			'wp_enqueue_scripts', array(
 				$this,
-				'BNSIA_Scripts_and_Styles'
+				'scripts_and_styles'
 			)
 		);
 
@@ -136,7 +132,6 @@ class BNS_Inline_Asides {
 		add_shortcode( 'aside', array( $this, 'bns_inline_asides_shortcode' ) );
 
 	}
-
 	/** End function - constructor */
 
 
@@ -145,34 +140,37 @@ class BNS_Inline_Asides {
 	 *
 	 * Adds plugin stylesheet and allows for custom stylesheet to be added by end-user.
 	 *
-	 * @package                BNS_Inline_Asides
-	 * @since                  0.4.1
+	 * @package BNS_Inline_Asides
+	 * @since   0.4.1
 	 *
-	 * @uses    (CONSTANT)     BNS_CUSTOM_PATH
-	 * @uses    (CONSTANT)     BNS_CUSTOM_URL
-	 * @uses    (CONSTANT)     BNSIA_PATH
-	 * @uses    (CONSTANT)     BNSIA_URL
-	 * @uses                   BNS_Inline_Asides::plugin_data
-	 * @uses                   content_url
-	 * @uses                   wp_enqueue_script
-	 * @uses                   wp_enqueue_style
+	 * @uses    (CONSTANT)   BNS_CUSTOM_PATH
+	 * @uses    (CONSTANT)   BNS_CUSTOM_URL
+	 * @uses    (CONSTANT)   BNSIA_PATH
+	 * @uses    (CONSTANT)   BNSIA_URL
+	 * @uses    BNS_Inline_Asides::plugin_data
+	 * @uses    wp_enqueue_script
+	 * @uses    wp_enqueue_style
 	 *
-	 * @version                1.0
-	 * @date                   April 3, 2013
+	 * @version 1.0
+	 * @date    April 3, 2013
 	 * Adjusted path to scripts and styles files
 	 * Removed direct jQuery enqueue
 	 *
-	 * @version                1.0.3
-	 * @date                   December 28, 2013
+	 * @version 1.0.3
+	 * @date    December 28, 2013
 	 * Added functional option to put `bnsia-custom-types.css` in `/wp-content/` folder
 	 *
-	 * @version                1.1
-	 * @date                   May 4, 2014
+	 * @version 1.1
+	 * @date    May 4, 2014
 	 * Apply `plugin_data` method
 	 * Moved JavaScript enqueue to footer
 	 * Moved custom CSS folder location to `/wp-content/bns-customs/`
+	 *
+	 * @version 1.2
+	 * @date    November 3, 2014
+	 * Renamed from `BNSIA_Scripts_and_Styles` to `scripts_and_styles`
 	 */
-	function BNSIA_Scripts_and_Styles() {
+	function scripts_and_styles() {
 		/** @var object $bnsia_data - holds the plugin header data */
 		$bnsia_data = $this->plugin_data();
 
@@ -196,7 +194,6 @@ class BNS_Inline_Asides {
 		/** End if - is readable */
 
 	}
-
 	/** End function - scripts and styles */
 
 
@@ -209,9 +206,10 @@ class BNS_Inline_Asides {
 	 * @param        $atts    - shortcode attributes
 	 * @param   null $content - the content
 	 *
-	 * @uses       BNS_Inline_Asides::replace_spaces
 	 * @uses       BNS_Inline_Asides::bnsia_theme_element
+	 * @uses       _x
 	 * @uses       do_shortcode
+	 * @uses       sanitize_html_class
 	 * @uses       shortcode_atts
 	 * @uses       wp_localize_script
 	 *
@@ -235,6 +233,11 @@ class BNS_Inline_Asides {
 	 * @version    1.0.3
 	 * @date       December 30, 2013
 	 * Code reductions (see `replace_spaces` usage)
+	 *
+	 * @version    1.2
+	 * @date       November 3, 2014
+	 * Added `_x` i18n implementation to `show` and `hide` default messages
+	 * Replaced `BNS_Inline_Asides::replace_spaces` with `sanitize_html_class` functionality
 	 */
 	function bns_inline_asides_shortcode( $atts, $content = null ) {
 		extract(
@@ -242,8 +245,8 @@ class BNS_Inline_Asides {
 				array(
 					'type'    => 'Aside',
 					'element' => '',
-					'show'    => 'To see the <em>%s</em> click here.',
-					'hide'    => 'To hide the <em>%s</em> click here.',
+					'show'    => _x( 'To see the <em>%s</em> click here.', '%s is a PHP replacement variable', 'bns-inline-asides' ),
+					'hide'    => _x( 'To hide the <em>%s</em> click here.', '%s is a PHP replacement variable', 'bns-inline-asides' ),
 					'status'  => 'open',
 				),
 				$atts, 'aside'
@@ -262,7 +265,7 @@ class BNS_Inline_Asides {
 		 * @var string $type_class - leaves any end-user capitalization for aesthetics
 		 * @var string $type       - Aside|end-user defined
 		 */
-		$type_class = $this->replace_spaces( $type );
+		$type_class = sanitize_html_class( strtolower( $type ), 'aside' );
 
 		/** no need to duplicate the default 'aside' class */
 		if ( $type_class == 'aside' ) {
@@ -273,14 +276,14 @@ class BNS_Inline_Asides {
 		/** End if - type class - aside */
 
 		/** @var $element - default is null|empty */
-		$element = $this->replace_spaces( $element );
+		$element = sanitize_html_class( strtolower( $element ), '' );
 
 		// The secret sauce ...
 		/** @var string $show - used as boolean control */
 		/** @var string $hide - used as boolean control */
 		$toggle_markup = '<div class="aside-toggler ' . $status . '">'
-						 . '<span class="open-aside' . $type_class . '">' . sprintf( __( $show ), esc_attr( $type ) ) . '</span>'
-						 . '<span class="close-aside' . $type_class . '">' . sprintf( __( $hide ), esc_attr( $type ) ) . '</span>
+		                 . '<span class="open-aside' . $type_class . '">' . sprintf( __( $show ), esc_attr( $type ) ) . '</span>'
+		                 . '<span class="close-aside' . $type_class . '">' . sprintf( __( $hide ), esc_attr( $type ) ) . '</span>
                          </div>';
 		if ( $this->bnsia_theme_element( $element ) == '' ) {
 			$return = $toggle_markup . '<div class="bnsia aside' . $type_class . ' ' . $status . '">' . do_shortcode( $content ) . '</div>';
@@ -295,7 +298,6 @@ class BNS_Inline_Asides {
 		return $return;
 
 	}
-
 	/** End function - shortcode */
 
 
@@ -303,15 +305,19 @@ class BNS_Inline_Asides {
 	 * Replace Spaces
 	 * Takes a string and replaces the spaces with a single hyphen by default
 	 *
-	 * @package  BNS_Inline_asides
-	 * @since    0.8
+	 * @package     BNS_Inline_asides
+	 * @since       0.8
 	 *
-	 * @internal Original code from Opus Primus by Edward "Cais" Caissie ( mailto:edward.caissie@gmail.com )
+	 * @internal    Original code from Opus Primus by Edward "Cais" Caissie ( mailto:edward.caissie@gmail.com )
 	 *
 	 * @param   string $text
 	 * @param   string $replacement
 	 *
 	 * @return  string - class
+	 *
+	 * @deprecated  1.2
+	 * @date        November 3, 2014
+	 * Replaced with `sanitize_html_class` functionality
 	 */
 	function replace_spaces( $text, $replacement = '-' ) {
 		/** @var $new_text - initial text set to lower case */
@@ -326,7 +332,6 @@ class BNS_Inline_Asides {
 		return $new_text;
 
 	}
-
 	/** End function - replace spaces */
 
 
@@ -407,12 +412,14 @@ class BNS_Inline_Asides {
 	 * @return array
 	 */
 	function plugin_data() {
+
 		/** Call the wp-admin plugin code */
 		require_once( ABSPATH . '/wp-admin/includes/plugin.php' );
 		/** @var $plugin_data - holds the plugin header data */
 		$plugin_data = get_plugin_data( __FILE__ );
 
 		return $plugin_data;
+
 	}
 	/** End function - plugin data */
 
