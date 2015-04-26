@@ -3,7 +3,7 @@ Contributors: cais
 Donate link: http://buynowshop.com
 Tags: posts, pages, content, shortcode, plugin-only
 Requires at least: 3.6
-Tested up to: 4.1
+Tested up to: 4.2
 Stable tag: 1.2
 License: GNU General Public License v2
 License URI: http://www.gnu.org/licenses/old-licenses/gpl-2.0.html
